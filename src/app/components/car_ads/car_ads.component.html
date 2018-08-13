@@ -1,0 +1,102 @@
+<div class="mybanner">
+    <div class="container">
+        <h2>Find Used Car and Books in Malakand Division</h2>
+        <p class="mybanner-text">Find thousands of used car and books at single place</p>
+        <div style="text-align:center">
+
+                <input type="text" class="" placeholder="car made or model name">
+                <select class="">
+                        <option>5-10</option>
+                        <option>10-12</option>
+                    </select>
+            <span id="MakeOrModel">
+                
+
+            </span>
+            <span id="MakeOrModel">
+                    
+    
+             </span>
+    
+        </div>
+    
+       
+      
+
+ </div>
+    
+    
+
+</div>
+   <div class="container">
+<div class="panel panel-default">
+
+<div class="panel-body">
+    
+    <div class="row">
+        <div class="col-md-6">
+            
+        </div>
+    </div>
+    <div class="responsive">
+        <table class="table table stripped" *ngIf="carAds && carAds.length" >
+            <thead>
+                <tr>
+                   
+                     <th>
+                      
+                    </th>
+                    <th>
+                        Car Made
+                    </th>
+                      <th>
+                        Car Model
+                    </th>
+                       <th>
+                        Car Model Year
+                    </th>
+                     <th>
+                      Price
+                    </th>
+                    <th>
+                        View Detail
+                    </th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor='let ad of carAds'>
+                    <td>
+                    <img src="http://localhost:8000\uploads\{{ad.car_image[0]}}" width="200px" height="100px"/>
+                    </td>
+                    <td>{{ad.car_make.make_name}}</td>
+                    <td>{{ad.car_make.model_name}}</td>
+                    <td>{{ad.car_model_year}}</td>
+                    <td>{{ad.car_price }}</td>
+                    
+                    <td>
+                           
+                    <a [routerLink]="['/car_ad_details',ad._id]">View Detail</a>
+                        
+                    
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <hr/>
+    <div style="text-align:center">
+        <ul class='pagination pagination-lg'>
+                <li class="page-item"><a href="#">Prev</a></li>
+                <li class="page-item active"><a href="#">1</a></li>
+                <li class="page-item"><a href="#">2</a></li>
+                <li class="page-item"><a href="#">3</a></li>
+                <li class="page-item"><a href="#">4</a></li>
+                <li class="page-item"><a href="#">5</a></li>
+                <li class="page-item"><a href="#">Next</a></li>
+        </ul>
+
+    </div>
+</div>
+</div>
+</div>
