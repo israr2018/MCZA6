@@ -4,7 +4,6 @@ import { Component, OnInit, enableProdMode, ViewContainerRef } from '@angular/co
 
 import {FormGroup,FormsModule,FormControl,ReactiveFormsModule}  from '@angular/forms';
 
-
 import { LoginService } from '../services/login/loginService';
 import { Router } from '@angular/router';
 
@@ -15,13 +14,12 @@ import { user } from './../../entities/user';
 
 templateUrl:'login.component.html'
 
-
 })
 export class LoginComponent{
   pageTitle:string="Login ";
   isProcessing:boolean;
   errMessage:string;
-  model:user=new user();
+  entity:user=new user();
   constructor(
     private _loginService:LoginService,
     private router:Router
@@ -45,10 +43,10 @@ export class LoginComponent{
     
   }
   
- 
  login():void{
    // email: isrardk, pwd:admin
- this._loginService.login(this.model).subscribe( result=>{
+console.log("entity:"+this.entity);
+ this._loginService.login(this.entity).subscribe( result=>{
   console.log(result.status);
   
   switch(result.status)
@@ -64,12 +62,13 @@ export class LoginComponent{
 
  case 200:
 
- 
   localStorage.setItem("token",result.token);
   this.router.navigate(['\admin']);
   break;
+case 501:
+this.errMessage=result.message;
+break;
  }
-
 
   },
    error=>{
@@ -77,9 +76,6 @@ export class LoginComponent{
 
    });
 
-
 }
 
 }
-
-

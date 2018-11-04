@@ -33,6 +33,7 @@ export class NewCarAdComponent implements OnInit {
   isAdSumbitted: boolean;
   messageOnAdSubmission: string;
   showOtherCarMake: boolean;
+  showOtherCarModel:boolean=false;
   show_varification: Boolean;
 
   //carMakes:any[];
@@ -68,22 +69,30 @@ export class NewCarAdComponent implements OnInit {
       formData.append("car_make_name", this.otherCarMakeName);
       formData.append("car_model_name", this.otherCarModelName);
     } else {
+      if(this.showOtherCarModel){
+        formData.append("car_model_name", this.otherCarModelName);
+      }
+      else
+      {
+        formData.append("car_model_name", this.selectedCarModelName);
+      }
       formData.append("car_make_name", this.selectedCarMakeName);
       formData.append("car_make_id", this.selectedCarMakeId);
       formData.append("car_model_id", this.selectedCarModelId);
-      formData.append("car_model_name", this.selectedCarModelName);
+      
     }
-
-    this.router.navigate(['/varify_number']);
-    // this._carAdService.saveCarAd(formData).subscribe(data=>
-    //   {
-    //    console.log(data);
-    //    this.router.navigate(['/car_ads']);
-    //    },
-    //    error=>{
-    //       console.log("error");
-    //        console.log(error);
-    //   });
+    
+   // 
+    this._carAdService.saveCarAd(formData).subscribe(data=>
+      {
+       console.log(data);
+        //this.router.navigate(['/varify_number']);
+        this.router.navigate(['/car_ads']);
+       },
+       error=>{
+          console.log("error");
+          
+      });
   } // end register()
 
   onFileSelect(event) {
@@ -139,8 +148,18 @@ export class NewCarAdComponent implements OnInit {
     }
   }
   onCarModelSelect(model_id): void {
-    this.selectedCarModelName = this.carModels.find(
+      this.selectedCarModelName = this.carModels.find(
       x => x._id == this.selectedCarModelId
     ).car_model;
+ console.log("selectedCarModleName--"+this.selectedCarModelName);
+  if(this.selectedCarModelName=="other"){
+    this.showOtherCarModel=true;
+    console.log(this.showOtherCarModel);
   }
+  else{
+    this.showOtherCarModel=false;
+  }
+   
+}
+
 }

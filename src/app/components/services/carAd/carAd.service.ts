@@ -11,8 +11,6 @@ import {
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-
-
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
@@ -29,12 +27,16 @@ export class CarAdService {
   }
   constructor(private _http: Http) {}
   getCarManufactureList(): Observable < any[] > {
+
     return this._http.get("http://localhost:8000/api/CarMakes")
-      .pipe(map((response: Response) => < ICarMakes[] > response.json()))
+      .pipe(
+         map((response: Response) => < ICarMakes[] > response.json())
+      ).
+        _catch(this.handleError);
   }
 
   private handleError(error: Response): Observable < ICarMakes[] > {
-
+    
     return Observable.throw(error.json().error || "Server Error");
 
   }
@@ -44,7 +46,6 @@ export class CarAdService {
 
   }
   getCarModals(id: String): Observable < any[] > {
-
 
     return this._http.get("http://localhost:8000/api/CarModels/" + id)
       .pipe(map((response: Response) => < any[] > response.json()));
@@ -83,4 +84,3 @@ export class CarAdService {
     return this._http.delete("http://localhost:8000/api/CarAds/" + id).pipe(map((res: Response) => <any> res.json()));
   }
 }
-

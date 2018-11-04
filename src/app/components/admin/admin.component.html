@@ -3,21 +3,21 @@
 
     <div class="row">
         <div class="col-md-4">
-            <div style="margin-top:100px">
+            <div style="margin-top:50px">
                 <div class="list-group">   
                     <h3 class="list-group-item active">{{pageTitle}}</h3>
                     <a [routerLink]="['all_car_ads']" class="list-group-item" >All Car Ads <span class="badge">{{all_car_ads_count}}</span></a>
                     <a [routerLink]="['all_active_car_ads']" class="list-group-item">All Active Ads<span class="badge">{{active_car_ads_count}}</span></a>
                     <a [routerLink]="['all_in_active_car_ads']" class="list-group-item">All Non Active Ads<span class="badge">{{in_active_car_ads_count}}</span></a>
-                    <a href="#" class="list-group-item">Car Made Names</a>
-                    <a href="#" class="list-group-item">Car Model Names</a>
+                    <a [routerLink]="['all_car_makes']" class="list-group-item">Car Makes </a>
+                    <a [routerLink]="['all_car_models']" class="list-group-item">Car Model Names</a>
                 </div>
         
         
             </div>
         </div>
 
-        <div class="col-md-8" style="margin-top:80px">
+        <div class="col-md-8" style="margin-top:40px">
                  <router-outlet>  
                 </router-outlet>                                                                          
                

@@ -1,102 +1,117 @@
-<div class="mybanner">
-    <div class="container">
-        <h2>Find Used Car and Books in Malakand Division</h2>
-        <p class="mybanner-text">Find thousands of used car and books at single place</p>
-        <div style="text-align:center">
 
-                <input type="text" class="" placeholder="car made or model name">
-                <select class="">
-                        <option>5-10</option>
-                        <option>10-12</option>
-                    </select>
-            <span id="MakeOrModel">
+        
+
+
+<div class="container">
+  <div class="jumbotron">
+      <h1 class="display-4">Search Your Favorite Car</h1>
+      <p class="lead">By Price and Car Make or Model</p>
+      <div class="form-group row">
+
+            <div class="col-md-3">
+              <div class="form-group" [class.has-error]='isInValidCarMake'>
+                  <input id="car_make_model" class="form-control" type="text" placeholder="Car Makes or Car Models" #car_makes (blur)="blur_carMakes(car_makes.value)" [(ngModel)]="defaultCarMakeOrModel">
+              </div>
                 
-
-            </span>
-            <span id="MakeOrModel">
-                    
-    
-             </span>
-    
-        </div>
-    
-       
-      
-
- </div>
-    
-    
-
-</div>
-   <div class="container">
-<div class="panel panel-default">
-
-<div class="panel-body">
-    
-    <div class="row">
-        <div class="col-md-6">
-            
-        </div>
-    </div>
-    <div class="responsive">
-        <table class="table table stripped" *ngIf="carAds && carAds.length" >
-            <thead>
-                <tr>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group" [class.has-error]='isInValidPriceRange'>
                    
-                     <th>
-                      
-                    </th>
-                    <th>
-                        Car Made
-                    </th>
-                      <th>
-                        Car Model
-                    </th>
-                       <th>
-                        Car Model Year
-                    </th>
-                     <th>
-                      Price
-                    </th>
-                    <th>
-                        View Detail
-                    </th>
-
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor='let ad of carAds'>
-                    <td>
-                    <img src="http://localhost:8000\uploads\{{ad.car_image[0]}}" width="200px" height="100px"/>
-                    </td>
-                    <td>{{ad.car_make.make_name}}</td>
-                    <td>{{ad.car_make.model_name}}</td>
-                    <td>{{ad.car_model_year}}</td>
-                    <td>{{ad.car_price }}</td>
-                    
-                    <td>
-                           
-                    <a [routerLink]="['/car_ad_details',ad._id]">View Detail</a>
+                    <select id="price_range" class="form-control" [(ngModel)]="defaultPriceRange" #price (blur)="blur_price(price.value)" >
+                        <option *ngFor="let price of priceRange" [value]="price">
+                          {{price}}
+                        </option>
                         
-                    
+                        
+                    </select>
+                   
+                </div>
+             </div>
+            <div class="col-md-3">
+              
+                <input id="" class="form-control btn btn-secondary" (click)="search(car_makes.value,price.value)" value="Search" type="button" [disabled]="((!isValidPriceRange || !isValidCarMake) || (isSearchMade))">
+            </div>
+            <div class="col-md-3">
+              
+              <input id="" class="form-control btn btn-secondary" (click)="reset()" value="reset" type="button">
+          </div>
+    </div>
+      <hr class="my-4">
+      <div *ngIf="pageItems.length==0">
+        <h2>Sorry, we could not find any car ads for the price range and car model that you entered</h2>
+        <p> Suggestions:</p>
+        <p>Make sure car make is spell correctly like toyota , vitz are spelled correctl.
+            Try another price range.
+            Try another car model.</p>
+        
+       
+       
+      </div>
+      <div class="responsive">
+            <table class="table table stripped" *ngIf="pageItems && pageItems.length">
+              <thead>
+                <tr>
+    
+                  <th>
+    
+                  </th>
+                  <th>
+                    Car Made
+                  </th>
+                  <th>
+                    Car Model
+                  </th>
+                  <th>
+                    Car Model Year
+                  </th>
+                  <th>
+                    Price
+                  </th>
+                  <th>
+                    View Detail
+                  </th>
+    
                 </tr>
-
-            </tbody>
-        </table>
-    </div>
-    <hr/>
-    <div style="text-align:center">
-        <ul class='pagination pagination-lg'>
-                <li class="page-item"><a href="#">Prev</a></li>
-                <li class="page-item active"><a href="#">1</a></li>
-                <li class="page-item"><a href="#">2</a></li>
-                <li class="page-item"><a href="#">3</a></li>
-                <li class="page-item"><a href="#">4</a></li>
-                <li class="page-item"><a href="#">5</a></li>
-                <li class="page-item"><a href="#">Next</a></li>
-        </ul>
-
-    </div>
+              </thead>
+              <tbody>
+                <tr *ngFor='let ad of pageItems'>
+                  <td>
+                    <img src="http://localhost:8000\uploads\{{ad.car_image[0]}}" width="200px" height="100px" />
+                  </td>
+                  <td>{{ad.car_make.make_name}}</td>
+                  <td>{{ad.car_make.model_name}}</td>
+                  <td>{{ad.car_model_year}}</td>
+                  <td>{{ad.car_price }} Lacks</td>
+    
+                  <td>
+    
+                    <a [routerLink]="['/car_ad_details',ad._id]">View Detail</a>
+    
+                </tr>
+    
+              </tbody>
+            </table>
+        </div>
+              <div style="text-align:center">
+                  <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+                      <li [ngClass]="{disabled:pager.currentPage === 1}">
+                          <a (click)="setPage(1)">First</a>
+                      </li>
+                      <li [ngClass]="{disabled:pager.currentPage === 1}">
+                          <a (click)="setPage(pager.currentPage - 1)">Previous</a>
+                      </li>
+                      <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                          <a (click)="setPage(page)">{{page}}</a>
+                      </li>
+                      <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                          <a (click)="setPage(pager.currentPage + 1)">Next</a>
+                      </li>
+                      <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                          <a (click)="setPage(pager.totalPages)">Last</a>
+                      </li>
+                  </ul>
+              </div>
+  </div>
+  
 </div>
-</div>
-</div>
+  

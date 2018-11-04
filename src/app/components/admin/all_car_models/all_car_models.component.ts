@@ -4,9 +4,9 @@ import { AdminComponent } from './../admin.component';
 import { CarAdService } from './../../services/carAd/carAd.service';
 @Component({
     
-    templateUrl: 'all_car_ads.component.html'
+    templateUrl: 'all_car_models.component.html'
 })
-export class AllCarAdsComponent implements OnInit {
+export class AllCarModelsComponent implements OnInit {
 
     pageTitle: string = "All Car Ads ";
     allCarAds: any[] = [];
@@ -41,55 +41,7 @@ export class AllCarAdsComponent implements OnInit {
 
     loadCarAds(): void {
 
-       this.countAllCarAds();
-       this.countAllActiveCarAds();
-       this.countAllInActiveCarAds();
-
     }
-
-    countAllCarAds(): void {
-        this._carAdService.getCarAds().subscribe((result) => {
-            this.allCarAds=result;
-           
-            this._adminComponent.all_car_ads_count = result.length;
-
-
-        },
-            (error) => { console.log("error") }
-        );
-
-    }
-    countAllActiveCarAds(): void {
-
-        this._carAdService.getActiveCarAds().subscribe((result => {
-
-            this._adminComponent.active_car_ads_count = result.length;
-
-        }),
-            (error) => {
-                console.log("error");
-
-            });
-
-
-    }
-    countAllInActiveCarAds(): void {
-
-
-        this._carAdService.getActiveCarAds(false).subscribe((result => {
-          
-            this._adminComponent.in_active_car_ads_count = result.length;
-
-
-        }),
-            (error) => {
-                console.log("error");
-
-            });
-
-    }
-
-
 
     loadCarMakes(): void {
 
@@ -113,7 +65,6 @@ export class AllCarAdsComponent implements OnInit {
 
             console.log("Error");
         });
-
 
     }
     setPageMode(command, item) {
@@ -180,8 +131,6 @@ export class AllCarAdsComponent implements OnInit {
 
         );
 
-
-
     }
     deleteAd(item):void{
     console.log("deleteAd is called with id"+item._id);
@@ -205,4 +154,3 @@ export class AllCarAdsComponent implements OnInit {
 
     }
 }
-

@@ -1,7 +1,8 @@
 
 
 /*body { font-size: 13px; color: #808080; font-family: 'Myriad Pro', 'PT Sans', sans-serif; line-height: 1.5 }*/
-body { font-size: 14px; color: #808080; font-family: 'Myriad Pro', 'Myriad Pro Regular', sans-serif; line-height: 1.5 }
+html,
+body { font-size: 14px; color: #808080; font-family: 'Myriad Pro', 'Myriad Pro Regular', sans-serif; line-height: 1.5;height:100% }
 .form-control-custom {
     display: block;
     width: 50%;
@@ -19,7 +20,39 @@ body { font-size: 14px; color: #808080; font-family: 'Myriad Pro', 'Myriad Pro R
     -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
     transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
 }
+.label-control{
+display:block;
+}
+.form-control2 {
+    /* display: block; */
+     width: 75%; 
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+.navbar-nav > li > a {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    line-height: 49px;
+}
+.navbar-default .navbar-nav>li>a {
+    color: #fff;
+    font-size: 23px;
+}
 
+#container2{
+    min-height: 100%;
+    position: relative;
+    
+    }
 /*h1, h2, h3, h4, h5, h6 { font-family: 'Myriad Pro', 'PT Sans Caption', sans-serif; }*/
 h1, h2, h3, h4, h5, h6 { font-family: 'Myriad Pro', 'Myriad Pro Bold', sans-serif; }
 h2 { font-size: 30px; font-weight: bold; color: #3C3C3B; }
@@ -29,7 +62,7 @@ h4 { font-size: 18px; font-weight: normal; color: #3C3C3B; }
 
 .navbar-header { height: 70px;}
 .navbar { margin-bottom: 0px; }
-.navbar-default { background-color: #012133; background-image: none; border: none; }
+.navbar-default { background-color: #012133; background-image: none; border: none;height:106px  }
 .navbar-default .navbar-nav>li>a { color: #fff; font-size: 18px; }
 .navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>li>a:focus { color: #ccc; }
 /*.navbar-nav>li>a { padding-top: 35px; padding-bottom: 35px; }*/
@@ -55,7 +88,6 @@ button.navbar-toggle { margin-top: 18px;}
  .admin-left-menu{
 list-style: none;
 
-
  }
 .admin-left-menu li a{
     border-color: #F39519;
@@ -66,29 +98,31 @@ list-style: none;
     margin-bottom:20px;
 }
 
-
 .mybanner{
 
-   background-color:#706f74;;
-   min-height:  260px;
-   padding-top:90px;
+    /* background-color: #706f74; */
+    height: 400px;
+    width:100%;
+/* https://image.shutterstock.com/z/stock-photo-vehicle-base-577312126.jpg */
+    background: url('./test3.jpg') no-repeat ;
+    background-size: cover;
+    
 }
 .mybanner h2{
-    color:#fff;
+    color:#ffffff;
     text-align: center;
-
-
+    padding:auto;
+    padding-top:150px;
+    font-size:60px;
+    
 }
-.mybanner-text{
-color:#fff;
-text-align:center;
-font-size:23px;
 
-}
 .mybanner-text{
 
-    color:#fff;
-    font-style: 20px;
+    color:#ffffff;
+    font-size: 40px;
+    font-weight: bold;
+    text-align:center;
 }
 .banner { background-color: #706f74;  background-repeat: no-repeat;  width: 100% } 
 .banner-business { background-color: #32B6EA;   background-position: center top; background-repeat: no-repeat; min-height: 384px; width: 100% }
@@ -111,8 +145,6 @@ font-size:23px;
     .banner { display: none }
 }
 
-
-
 .btn-primary, .btn-primary:visited, .btn-primary:hover, .btn-primary:focus, .btn-primary:active { color: #fff; outline: none } 
 .btn-primary, .btn-primary:visited, .btn-primary:focus { 
     background-image: -webkit-linear-gradient(top,#F39519 0,#F27500 100%);
@@ -132,7 +164,6 @@ font-size:23px;
 .btn-default, .btn-default:visited, .btn-default:hover, .btn-default:focus, .btn-default:active { color: #F39519; background-color: #fff; background-image: none; border: 2px solid #F39519; outline: none }
 .btn-default:hover { background-color: #fff5c9 }
 /*.btn-default:hover { border-width: 4px; font-weight: bold; }*/
-
 
 div.frontpage-target-md-4 { text-align: center; }
 div.frontpage-target-md-4 p { text-align: center; margin-top: 10px; margin-bottom: 10px; }
@@ -270,4 +301,3 @@ div.edition-box-primary div.volume-pricing a, div.edition-box-primary div.volume
 div.volume-pricing a:hover { text-decoration: underline; color: #33B6EA }
 div.col-md-edition { text-align: center; }
 .hilite { background-color: yellow; }
-

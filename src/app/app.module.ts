@@ -26,12 +26,21 @@ import { AllCarAdsComponent } from './components/admin/all_car_ads/all_car_ads.c
 import { AllActiveCarAdsComponent } from './components/admin/all_active_car_ads/all_active_car_ads.component';
 import { AllInActiveCarAdsComponent } from './components/admin/all_in_active_car_ads/all_in_active_car_ads.component';
 import { VarifyNumberComponent } from '././components/varify.number/varify.number.component';
-
+import { BannerComponent } from './components/banner/banner.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { PaginationService } from './components/services/pagination/pagination.service';
+import { AllCarMakesComponent } from 'src/app/components/admin/all_car_makes/all_car_makes.component';
+import { CarMakeService } from './components/services/carAd/carMake.service';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { AllCarModelsComponent } from './components/admin/all_car_models/all_car_models.component';
 
 @NgModule({
   imports: [
-    BrowserModule,
+ 
+  BrowserModule,
     HttpModule,
+    HttpClientModule,
+    
     FormsModule,
     ReactiveFormsModule, 
     RouterModule.forRoot(ROUTE)
@@ -54,10 +63,13 @@ import { VarifyNumberComponent } from '././components/varify.number/varify.numbe
     AllCarAdsComponent,
     AllActiveCarAdsComponent,
     AllInActiveCarAdsComponent,
-    VarifyNumberComponent
-    
+    AllCarMakesComponent,
+    AllCarModelsComponent,
+    VarifyNumberComponent,
+    BannerComponent,
+    FooterComponent
     ],
-  providers: [CarAdService,LoginService,AuthGuard],
+  providers: [CarAdService,LoginService,AuthGuard,PaginationService,CarMakeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
