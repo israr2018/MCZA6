@@ -4,7 +4,7 @@ const app=express();
 app.use(express.static(__dirname+'/dist/MCZA6'));
 app.get('/*',function(req,res){
 
-res.send('./dist/index.html');
+res.send('./dist/MCZA6/index.html');
 
 
 });
