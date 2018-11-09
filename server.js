@@ -5,7 +5,7 @@ app.use(express.static(__dirname+'/dist/MCZA6'));
 const port=process.env.PORT||8080;
 app.get('/*',function(req,res){
 
-res.resendFile('./dist/MCZA6/index.html');
+res.sendFile('./dist/MCZA6/index.html');
 
 
 
