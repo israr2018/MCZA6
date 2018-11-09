@@ -8,16 +8,18 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "postinstall": "ng build  --prod ",
+    "postinstall": "ng build --aot -prod ",
     "start": "node  server.js"
   },
   "private": true,
   "dependencies": {
     "@angular/cli": "~6.1.3",
+    
+    "@angular/compiler-cli": "^6.1.0",
     "typescript": "~2.7.2",
     "@angular/animations": "^6.1.0",
     "@angular/common": "^6.1.0",
-    "@angular/compiler": "^6.1.0",
+   
     "@angular/core": "^6.1.0",
     "@angular/forms": "^6.1.0",
     "@angular/http": "^6.1.0",
