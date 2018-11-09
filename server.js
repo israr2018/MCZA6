@@ -7,7 +7,8 @@ app.get('/*',function(req,res){
 
 //res.sendFile('./dist/MCZA6/index.html');
 //res.send(__dirname+'/dist/MCZA6");
-res.sendFile(path.join(__dirname+'/dist/MCZA6/index.html'));
+//res.sendFile(path.join(__dirname+'/dist/mcza6/index.html'));
+res.send("Hello World");
 
 
 });
