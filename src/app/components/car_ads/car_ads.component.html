@@ -9,13 +9,13 @@
       <div class="form-group row">
 
             <div class="col-md-3">
-              <div class="form-group" [class.has-error]='isInValidCarMake'>
+              <div class="form-group" [class.has-error]='isValidCarMake'>
                   <input id="car_make_model" class="form-control" type="text" placeholder="Car Makes or Car Models" #car_makes (blur)="blur_carMakes(car_makes.value)" [(ngModel)]="defaultCarMakeOrModel">
               </div>
                 
             </div>
             <div class="col-md-3">
-                <div class="form-group" [class.has-error]='isInValidPriceRange'>
+                <div class="form-group" [class.has-error]='isValidPriceRange'>
                    
                     <select id="price_range" class="form-control" [(ngModel)]="defaultPriceRange" #price (blur)="blur_price(price.value)" >
                         <option *ngFor="let price of priceRange" [value]="price">
