@@ -1,5 +1,4 @@
-
-
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, NgForm, FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
@@ -69,7 +68,7 @@ import { AllCarModelsComponent } from './components/admin/all_car_models/all_car
     BannerComponent,
     FooterComponent
     ],
-  providers: [CarAdService,LoginService,AuthGuard,PaginationService,CarMakeService],
+  providers: [CarAdService,LoginService,AuthGuard,PaginationService,CarMakeService,{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
