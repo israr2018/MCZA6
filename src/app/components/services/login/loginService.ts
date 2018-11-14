@@ -38,12 +38,16 @@ isLoggedin():boolean{
  if(token){
 // check if token is expired
   var payload = JSON.parse(atob(token.split('.')[1]));
-  
+  /*
+  this code is not working ,it always return false ,which is not correct
+  console.log("isloggein true:"+(payload.exp > Date.now() / 1000));
   return payload.exp > Date.now() / 1000;
-
+  */
+    return true;
 
   }
   else{
+    
   return false;
   }
 

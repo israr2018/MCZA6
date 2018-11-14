@@ -5,8 +5,8 @@
 export const environment = {
   production: false,
   name:"local",
-   baseUrl:"http://localhost:8000/api",
-  //baseUrl:"https://malakandcarzoneapi.herokuapp.com/api",
+  // baseUrl:"http://localhost:8000/api",
+  baseUrl:"https://malakandcarzoneapi.herokuapp.com/api",
    image_baseUrl:"https://malakandcarzoneapi.herokuapp.com\\uploads"
 };
 

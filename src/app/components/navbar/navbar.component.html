@@ -60,12 +60,13 @@
                         <li><a href="../../about.php">About</a></li>
                     </ul>
                 </li> -->
-                <li class="dropdown" *ngIf="isLoggedin()">
+                <!-- <li class="dropdown" *ngIf="isLoggedin()">
                     <a [routerLink]="['/profile']" >Profile</a>
                 </li>
                 <li class="dropdown" *ngIf="isAdmin()">
-                    <a [routerLink]="['/admin']">Admin</a>
+                    <a [routerLink]="['/admin']">Admin</a> 
                 </li>
+                -->
                 <li class="dropdown" *ngIf="!isLoggedin()">
                     <a [routerLink]="['/login']">Login</a>
                 </li>
