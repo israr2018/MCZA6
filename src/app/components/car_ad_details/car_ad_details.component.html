@@ -10,7 +10,7 @@
                            <div *ngIf="carAd.car_image!=null">                  
                                         <div id="gallery">   
                                             <div id="upper" >
-                                                    <img src="http://localhost:8000\uploads\{{selectedPic}}" data-imagezoom="true" class="img-responsive"/>
+                                                    <img src="{{this.image_baseUrl}}\{{selectedPic}}" data-imagezoom="true" class="img-responsive"/>
                                             </div>             
                                            
                                             
@@ -19,21 +19,16 @@
                                         <div id="thumbs">
                                                
                                             <a href="" *ngFor="let item of carAd.car_image" class="thumb" (click)="setPicture(item)" onclick="return false" >
-                                                <img src="http://localhost:8000\uploads\{{item}}"/>
+                                                <img src="{{this.image_baseUrl}}\{{item}}"/>
                                             </a>
 
                                         </div>
-                                        
-                                        
-                                               
-                                    
-                                
-                                        
+                                                                     
                             </div>
                                     
                     </div>
                 <div class="col-md-4">
-                <p class="btn btn-primary">Price:{{carAd.car_price}} </p>
+                <p class="btn btn-primary">Price:{{carAd.car_price}} Lacks </p>
                 <p style="font-size:1.2em">Comments by the seller:{{carAd.car_description}}</p>
                 <p style="font-size:1.2em">Contact Nummber:{{carAd.contact_number}}</p>
 
@@ -41,9 +36,9 @@
                 <hr />
                 <ul class="size">
 
-                    <li style="font-size:1.2em"> Modal Year: {{carAd.car_model_year}}</li>
-                    <li style="font-size:1.2em"> Manufacturer: {{carAd.car_make.make_name}}</li>
-                    <li style="font-size:1.2em"> Modal:{{carAd.car_make.model_name}}</li>
+                    <li style="font-size:1.2em"> Car Model Year: {{carAd.car_model_year}}</li>
+                    <li style="font-size:1.2em"> Car Made: {{carAd.car_make.make_name}}</li>
+                    <li style="font-size:1.2em"> Car Model :{{carAd.car_make.model_name}}</li>
                     <li style="font-size:1.2em">Tansmission Type :{{carAd.car_transmission_type}}</li>
                     <li style="font-size:1.2em">Fuel:{{carAd.car_engine_type}}</li>
                     <li style="font-size:1.2em">Engince Capacity(cc):{{carAd.car_engine_capacity}}</li>

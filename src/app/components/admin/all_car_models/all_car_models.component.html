@@ -1,37 +1,83 @@
+
+
+
 <div class="form-group">
-    <label for="my-input">Select Car Make</label>
-    <select id="my-input" class="form-control">
-        <option>Toyota</option>
-        <option>Suzuki</option>
-    </select>
+    <label for="car_make">Car Make</label>
+    <select class="form-control" [(ngModel)]="car_make_id" (change)="onMakeSelect()" [class.hidden]="hideCarMakeDDL">
+        <option *ngFor="let make of allCarMakes" [value]="make._id" >
+                {{make.car_make}}
+        </option>
+</select>
+
 </div>
-<table>
-    <tr>
-        <td>
-            <span [class.hidden]="true" class="form-control"> Vitz</span>
-            <input type="text" class="form-control" id="editMe" [class.hidden]="false">
-            <input type="text" class="form-control" id="editMe" [class.hidden]="true">
-            <input type="text" class="form-control" id="Add Me" [class.hidden]="true"> 
+
+<div class="row">
+
+    <div class="col-md-8">
+        <select id="my-input" class="form-control" [class.hidden]="hideCarModelDDL" [(ngModel)]="car_model_id"  (blur)="onModelSelect()" > 
+                <option *ngFor="let item of allCarModels" [value]="item._id">{{item.car_model_name}}</option>
+                
+        </select>
         
+        <!-- <span  class="form-control" [class.hidden]="hideCarModelText"> Vitz</span> -->
+        <input type="text" class="form-control" placeholder="edit car model name" name="edit_model_name" id="editMe" #model_name [(ngModel)]="car_model_name" [class.hidden]="hideEditText" >
+        <input type="text" class="form-control" placeholder="car model name" [class.hidden]="hideAddText" #car_model > 
         
+    </div>
+    <!-- 
+       ---default state
+
+       carModelDDL=true;
+       carModelText=false;
+       editText=false;
+       addText=false;
+       
+       
+       
+       
+       
+        when the user click edit button
+        -------------------------------
+        ..carModelDDL==true;
+        ..carModelText=true;
+        ..editText=false;
+        ..addText=true;
+        ..saveButton=true,
+        ..cancelButton=true;
+        ..deleteButton=false;
+
+
+        when the user click add button
+        ---------------------------------------
+        ..saveButton=true;
+        ..cancelButton=true;
+
+        when the user click cancel Button
+        ------------------------------------------
+
+
+
+
+
+     -->
+
+</div>
+<div class="form-group row">
+
+    <div class="col-md-8 form-group">
+            <button class="btn btn-secondary" [class.hidden]="hideSaveButton" (click)="save(car_model.value)">Save</button>
+            <button class="btn btn-secondary" [class.hidden]="hideCancelButton" (click)="cancelClick()">Cancel</button>
+            <button class="btn btn-secondary" [class.hidden]="hideEditButton" (click)="setEditState()">Edit</button>
+            <button class="btn btn-secondary" [class.hidden]="hideDeleteButton" (click)="deleteClick()">Delete</button>
+            <button class="btn btn-secondary" [class.hidden]="hideAddButton" (click)='addClick()'>Add</button>
+    </div>
         
-        </td>
-        <td>
-            <button class="btn btn-secondary">Edit</button>
 
-        </td>
-        <td>
-                <button class="btn btn-secondary">Delete</button>
-        </td>
-        <td>
-                <button class="btn btn-secondary">Add</button>
-        </td>
-    </tr>
-</table>
+</div>
 
 
 
 
-<!-- <span [class.hidden]="true"> Vitz</span>
-<input type="text" class="form-control" id="editMe" [class.hidden]="false">
-<input type="text" class="form-control" id="Add Me" [class.hidden]="true"> -->
+
+
+

@@ -2,12 +2,7 @@
 
         <form #form="ngForm">
                 <legend class="leads">Edit Car Ad</legend>
-                <p>
-                        Car Make ID:{{car_make_id}}
-                        <br> Car Price:{{car_price}}
-                        <br> Car Make:{{make_name}}
-
-                </p>
+               
 
 
 
@@ -145,6 +140,16 @@
 
                         </div>
                 </div>
+                <div class="form-group row">
+
+                                <div class="col-md-3">
+                                        <label for="form_message"> Original Number(*)</label>
+                                </div>
+                                <div class="col-md-6">
+                                        <input type="text" class="form-control" name="original_number" [(ngModel)]="original_number" />
+        
+                                </div>
+                        </div>
 
                 <div class="row form-group">
                         <div class="col-md-8 col-md-offset-4">
@@ -206,4 +211,23 @@
 
                 </tr>
         </table>
+        <div style="text-align:center">
+                        <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+                            <li [ngClass]="{disabled:pager.currentPage === 1}">
+                                <a (click)="setPage(1)">First</a>
+                            </li>
+                            <li [ngClass]="{disabled:pager.currentPage === 1}">
+                                <a (click)="setPage(pager.currentPage - 1)">Previous</a>
+                            </li>
+                            <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                                <a (click)="setPage(page)">{{page}}</a>
+                            </li>
+                            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                                <a (click)="setPage(pager.currentPage + 1)">Next</a>
+                            </li>
+                            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                                <a (click)="setPage(pager.totalPages)">Last</a>
+                            </li>
+                        </ul>
+    </div>
 </div>

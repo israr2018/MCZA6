@@ -5,6 +5,7 @@ import { Component, OnInit } from "@angular/core";
 import { CarAdDetailsComponent } from './../../car_ad_details/car_ad_details.component';
 import { AdminComponent } from './../admin.component';
 import { CarAdService } from './../../services/carAd/carAd.service';
+import {PaginationService } from '../../services/pagination/pagination.service';
 @Component({
    
     templateUrl: 'all_in_active_car_ads.component.html'
@@ -29,10 +30,13 @@ export class AllInActiveCarAdsComponent implements OnInit {
     car_model_year: String;
     car_transmission_type: String;
     contact_number: String;
+    original_number:String;
     car_km_driven: String;
-    car_ads_count:number
+    car_ads_count:number;
+    pager:any={};
+    pageItems:any[]=[];
     // Edit, Delete, List=default 
-    constructor(private _carAdService: CarAdService,private _adminComponent:AdminComponent) {
+    constructor(private _carAdService: CarAdService,private _adminComponent:AdminComponent,private _paginationService:PaginationService) {
 
     }
     ngOnInit(): void {
@@ -41,6 +45,13 @@ export class AllInActiveCarAdsComponent implements OnInit {
         this.loadCarMakes();
 
     }
+    setPage(page:number){
+        this.pager = this._paginationService.getPages(this.allCarAds.length, page);
+     
+        // get current page of items
+        this.pageItems = this.allCarAds.slice(this.pager.startIndex, this.pager.endIndex + 1);
+      }
+    
 
     loadCarAds(): void {
 
@@ -74,12 +85,12 @@ export class AllInActiveCarAdsComponent implements OnInit {
 
     }
     countAllInActiveCarAds(): void {
-
+        
 
         this._carAdService.getActiveCarAds(false).subscribe((result => {
             this.allCarAds=result;
             this._adminComponent.in_active_car_ads_count = result.length;
-
+            this.setPage(1);
 
         }),
             (error) => {
@@ -174,13 +185,13 @@ export class AllInActiveCarAdsComponent implements OnInit {
         };
         this._carAdService.updateCarAd(updateAd, this.ad_id).subscribe((result) => {
 
-            alert("Record is updated successfully" + result);
+            alert("Record is updated successfully");
             this.loadCarAds();
             this.setPageMode('default', null);
 
         },
             (error) => {
-                alert("Error oocured in upate Ad" + error);
+                alert("Error oocured in upate Ad");
 
             }
 

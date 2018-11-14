@@ -2,6 +2,7 @@
 import { Component, OnInit } from "@angular/core";
 import { AdminComponent } from './../admin.component';
 import { CarAdService } from './../../services/carAd/carAd.service';
+import {PaginationService } from '../../services/pagination/pagination.service';
 @Component({
     
     templateUrl: 'all_active_car_ads.component.html'
@@ -26,9 +27,12 @@ export class AllActiveCarAdsComponent implements OnInit {
     car_model_year: String;
     car_transmission_type: String;
     contact_number: String;
+    original_number:String;
     car_km_driven: String;
+    pager:any={};
+    pageItems:any[]=[];
     // Edit, Delete, List=default 
-    constructor(private _carAdService: CarAdService, private _adminComponent: AdminComponent) {
+    constructor(private _carAdService: CarAdService, private _adminComponent: AdminComponent,private _paginationService:PaginationService) {
 
     }
     ngOnInit(): void {
@@ -37,6 +41,13 @@ export class AllActiveCarAdsComponent implements OnInit {
         this.loadCarMakes();
 
     }
+    setPage(page:number){
+        this.pager = this._paginationService.getPages(this.allCarAds.length, page);
+     
+        // get current page of items
+        this.pageItems = this.allCarAds.slice(this.pager.startIndex, this.pager.endIndex + 1);
+      }
+
 
     loadCarAds(): void {
 
@@ -62,7 +73,7 @@ export class AllActiveCarAdsComponent implements OnInit {
             this.allCarAds=result;
             this._adminComponent.active_car_ads_count = result.length;
             console.log("all_active_car_ads :"+ this._adminComponent.active_car_ads_count);
-
+            this.setPage(1);
         }),
             (error) => {
                 console.log("error");
@@ -159,7 +170,9 @@ export class AllActiveCarAdsComponent implements OnInit {
             car_km_driven: this.car_km_driven,
             car_transmission_type: this.car_transmission_type,
             car_engine_capacity: this.car_engine_capacity,
-            car_engine_type: this.car_engine_type
+            car_engine_type: this.car_engine_type,
+            contact_number:this.contact_number,
+            original_number:this.original_number
 
         };
         this._carAdService.updateCarAd(updateAd, this.ad_id).subscribe((result) => {

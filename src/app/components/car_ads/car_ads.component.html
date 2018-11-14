@@ -76,7 +76,7 @@
               <tbody>
                 <tr *ngFor='let ad of pageItems'>
                   <td>
-                    <img src="http://localhost:8000\uploads\{{ad.car_image[0]}}" width="200px" height="100px" />
+                    <img src="{{image_baseUrl}}\{{ad.car_image[0]}}" width="200px" height="100px" />
                   </td>
                   <td>{{ad.car_make.make_name}}</td>
                   <td>{{ad.car_make.model_name}}</td>

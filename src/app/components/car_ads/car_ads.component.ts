@@ -2,9 +2,7 @@ import {
   Component,
   OnInit
 } from '@angular/core';
-import {
-  CarAdsFilterPipe
-} from './car_ads_filter'
+
 import {
   CarAdService
 } from '../services/carAd/carAd.service';
@@ -16,6 +14,7 @@ import {
 } from '@angular/http';
 import { LowerCasePipe } from '@angular/common';
 import { PaginationService } from '../services/pagination/pagination.service';
+import { environment } from '../../../environments/environment';
 @Component({
 
   templateUrl: 'car_ads.component.html'
@@ -35,8 +34,9 @@ export class CarAdsComponent implements OnInit {
   backUpArray:any[]=[];
   pager:any={};
   pageItems:any[]=[];
+  image_baseUrl:string;
   constructor(private _carAdService: CarAdService,private _paginationService:PaginationService) {
-
+    this.image_baseUrl=environment.image_baseUrl;
   }
   toggleImage(): void {
     console.log("You clicked showImage button");

@@ -33,6 +33,7 @@ export const ROUTE: Routes = [
   {
     path: "admin",
     component: AdminComponent,
+    // canActivate:[AuthGuard],
     children: [
       { path: "", component: AllCarAdsComponent },
       { path: "all_car_ads", component: AllCarAdsComponent },

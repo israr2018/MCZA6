@@ -3,7 +3,6 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -20,7 +19,6 @@
     "typescript": "~2.7.2",
     "@angular/animations": "^6.1.0",
     "@angular/common": "^6.1.0",
-   
     "@angular/core": "^6.1.0",
     "@angular/forms": "^6.1.0",
     "@angular/http": "^6.1.0",

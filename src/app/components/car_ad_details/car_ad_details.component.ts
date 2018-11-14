@@ -6,6 +6,7 @@ import { switchMap } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { Jsonp } from '@angular/http';
 import { CarAdService } from './../services/carAd/carAd.service';
+import {environment} from '../../../environments/environment'
 @Component({
   
   templateUrl: 'car_ad_details.component.html'
@@ -17,10 +18,13 @@ export class CarAdDetailsComponent implements OnInit {
   selectedPic: string;
   currentPicIndex: number = 0;
   isDataLoaded: boolean = false;
+  image_baseUrl:string;
 
   constructor(private router: Router, private route: ActivatedRoute, private _service: CarAdService) {
 
     //this.carAd=null;
+
+    this.image_baseUrl=environment.image_baseUrl;
   }
   ngOnInit() {
     let id = this.route.snapshot.params['id'];

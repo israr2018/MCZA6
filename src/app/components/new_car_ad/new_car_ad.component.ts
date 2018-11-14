@@ -123,7 +123,9 @@ export class NewCarAdComponent implements OnInit {
         this.errMsg = error;
       }
     );
-    this.selectedCarMakeId = "5ad83526708fdb3b4aa67929";
+
+    // make a default select item from the drop down list
+    this.selectedCarMakeId = this.carMakes[0]._id;
   }
   onMakeSelect(carMakeId): void {
     console.log("CarMake id:" + carMakeId);
@@ -150,7 +152,7 @@ export class NewCarAdComponent implements OnInit {
   onCarModelSelect(model_id): void {
       this.selectedCarModelName = this.carModels.find(
       x => x._id == this.selectedCarModelId
-    ).car_model;
+    ).car_model_name;
  console.log("selectedCarModleName--"+this.selectedCarModelName);
   if(this.selectedCarModelName=="other"){
     this.showOtherCarModel=true;

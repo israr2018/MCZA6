@@ -10,7 +10,7 @@ import { environment } from '../../../../environments/environment';
 
 
 @Injectable()
-export class CarMakeService {
+export class CarModelService {
     baseUrl:string;
     constructor(private _http: HttpClient) {
         this.baseUrl=environment.baseUrl;
@@ -35,24 +35,39 @@ export class CarMakeService {
       errMessage);
       
   };
+
+  getCarModelsByMakeId(id: String): Observable <HttpResponse <any[]> > {
+
+    return this._http.get<ICarModel[]>(this.baseUrl+"/CarModels?car_make_id="+id,{observe:'response'});
   
-  getAllCarMake(): Observable < HttpResponse < ICarMakes[] >> {
+  }
+  getAllCarModels(): Observable < HttpResponse < ICarModel[] >> {
     
     
     
-    return this._http.get < ICarMakes[] > (this.baseUrl+"/CarMakes", {
+    return this._http.get < ICarModel[] > (this.baseUrl+"/CarModels", {
       observe: 'response'
     })._catch(this.handleError);
 
   }
-  updateCarMake(item:ICarMakes,_id:any):Observable<HttpResponse<ICarMakes>>{
-      return this._http.put<ICarMakes>(this.baseUrl+"/CarMakes/"+_id,item,{observe:'response'})._catch(this.handleError);
+  updateCarModel(item:any,_id:any):Observable<HttpResponse<ICarModel>>{
+    console.log(item);
+      return this._http.put<ICarModel>(this.baseUrl+"/CarModels/"+_id,item,{observe:'response'})._catch(this.handleError);
   }
-  addCarMake(make:any):Observable<HttpResponse<ICarMakes>>{
+  addCarModel(carModel:any):Observable<HttpResponse<ICarModel>>{
       
-      return this._http.post<ICarMakes>(this.baseUrl+"/CarMakes/",make,{observe:'response'})._catch(this.handleError);
+      return this._http.post<ICarModel>(this.baseUrl+"/CarModels/",carModel,{observe:'response'})._catch(this.handleError);
   }
-  deleteCarMake(makeId:any):Observable<HttpResponse<any>>{
-    return this._http.delete(this.baseUrl+"/CarMakes/"+makeId,{observe:'response'})._catch(this.handleError);
+  deleteCarModel(_id:any):Observable<HttpResponse<any>>{
+    return this._http.delete(this.baseUrl+"/CarModels/"+_id,{observe:'response'})._catch(this.handleError);
   }
+}
+interface ICarModel{
+
+ car_model_name:string;
+ car_make_id:string;
+ _id:string;
+
+
+
 }

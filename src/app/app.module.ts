@@ -32,6 +32,7 @@ import { AllCarMakesComponent } from 'src/app/components/admin/all_car_makes/all
 import { CarMakeService } from './components/services/carAd/carMake.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { AllCarModelsComponent } from './components/admin/all_car_models/all_car_models.component';
+import { CarModelService } from './components/services/carAd/carModelService';
 
 @NgModule({
   imports: [
@@ -68,7 +69,7 @@ import { AllCarModelsComponent } from './components/admin/all_car_models/all_car
     BannerComponent,
     FooterComponent
     ],
-  providers: [CarAdService,LoginService,AuthGuard,PaginationService,CarMakeService,{provide: LocationStrategy, useClass: HashLocationStrategy}],
+  providers: [CarAdService,LoginService,AuthGuard,PaginationService,CarMakeService,CarModelService,{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

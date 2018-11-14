@@ -8,14 +8,17 @@ import {ICarMakes} from './../../../entities/CarMakes';
 import {user} from './../../../entities/user';
 import { window } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import {environment} from '../../../../environments/environment';
 
 @Injectable()
 export class LoginService {
+  baseUrl:string;
 constructor(private _http:Http,private _router:Router){
+this.baseUrl=environment.baseUrl;
 }
 login(model:user):Observable<any>{
  
-  return this._http.post("http://localhost:8000/api/authenticate",model).pipe(map((res:Response)=><any>res.json()));
+  return this._http.post(this.baseUrl+"/authenticate",model).pipe(map((res:Response)=><any>res.json()));
 }
 // authenticateAsAdmin(token:string):Observable<any>{
 // const headers=new Headers();

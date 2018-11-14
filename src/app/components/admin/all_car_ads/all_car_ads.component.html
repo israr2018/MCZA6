@@ -2,15 +2,7 @@
 
         <form #form="ngForm">
                 <legend class="leads">Edit Car Ad</legend>
-                <p>
-                        Car Make ID:{{car_make_id}}
-                        <br> Car Price:{{car_price}}
-                        <br> Car Make:{{make_name}}
-
-                </p>
-
-
-
+               
                 <div class="form-group row">
 
                         <div class="col-md-3">
@@ -59,7 +51,7 @@
                         </div>
                         <div class="col-md-6">
                                 <select class="form-control" name="model_name" [(ngModel)]="model_name">
-                                        <option *ngFor='let model of allCarModels' [value]="model.car_model">{{model.car_model}}</option>
+                                        <option *ngFor='let model of allCarModels' [value]="model.car_model_name">{{model.car_model_name}}</option>
                                 </select>
 
                         </div>
@@ -144,7 +136,19 @@
                                 <input type="text" class="form-control" name="contact_number" [(ngModel)]="contact_number" />
 
                         </div>
+                      
                 </div>
+                <div class="form-group row">
+
+                                <div class="col-md-3">
+                                        <label for="form_message"> Original Number(*)</label>
+                                </div>
+                                <div class="col-md-6">
+                                        <input type="text" class="form-control" name="original_number" [(ngModel)]="original_number" />
+        
+                                </div>
+                                
+                        </div>
 
                 <div class="row form-group">
                         <div class="col-md-8 col-md-offset-4">
@@ -158,18 +162,7 @@
         </form>
 
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
+<div *ngIf="pageMode!=='edit'">
 <div *ngIf="allCarAds" style="margin-top:10px">
         <h3>All Car Ads</h3>
         <table class="table">
@@ -216,4 +209,25 @@
 
                 </tr>
         </table>
+        <div style="text-align:center">
+                        <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+                            <li [ngClass]="{disabled:pager.currentPage === 1}">
+                                <a (click)="setPage(1)">First</a>
+                            </li>
+                            <li [ngClass]="{disabled:pager.currentPage === 1}">
+                                <a (click)="setPage(pager.currentPage - 1)">Previous</a>
+                            </li>
+                            <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                                <a (click)="setPage(page)">{{page}}</a>
+                            </li>
+                            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                                <a (click)="setPage(pager.currentPage + 1)">Next</a>
+                            </li>
+                            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                                <a (click)="setPage(pager.totalPages)">Last</a>
+                            </li>
+                        </ul>
+        </div>
+       
+</div>
 </div>

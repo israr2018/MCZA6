@@ -47,7 +47,7 @@
             <div class="form-group">
               <label for="carModal">Car Model</label>
               <select class="form-control" name="model.car_model_id" [(ngModel)]="selectedCarModelId" (blur)="onCarModelSelect($event)">
-                <option *ngFor='let model of carModels' [value]="model._id">{{model.car_model}}</option>
+                <option *ngFor='let model of carModels' [value]="model._id">{{model.car_model_name}}</option>
               </select>
               <span *ngIf="(showOtherCarMake || showOtherCarModel)">
                 <input type="text" class="form-control" name="otherCarModelName" [(ngModel)]="otherCarModelName" placeholder="Please type other car model name"
@@ -200,18 +200,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="form_message"> Secondry Mobile Number</label>
-                <input type="text" class="form-control" />
-
-
-                <div class="help-block with-errors">
-
-
-                </div>
-              </div>
-            </div>
+            
           </div>
           <div class="row">
             <div class="col-md-12">
