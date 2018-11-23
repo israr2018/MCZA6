@@ -35,6 +35,7 @@ export class NewCarAdComponent implements OnInit {
   showOtherCarMake: boolean;
   showOtherCarModel:boolean=false;
   show_varification: Boolean;
+  
 
   //carMakes:any[];
   carModels: any[];
@@ -65,6 +66,7 @@ export class NewCarAdComponent implements OnInit {
     formData.append("car_engine_capacity", this.model.car_engine_capacity);
     formData.append("contact_number", this.model.contact_number);
     formData.append("car_model_id", this.model.car_model_id);
+    formData.append("car_registration_type",this.model.car_registration_type);
     if (this.showOtherCarMake) {
       formData.append("car_make_name", this.otherCarMakeName);
       formData.append("car_model_name", this.otherCarModelName);
@@ -117,6 +119,8 @@ export class NewCarAdComponent implements OnInit {
     this._carAdService.getCarManufactureList().subscribe(
       carMakes => {
         this.carMakes = carMakes;
+         // make a default select item from the drop down list
+        this.selectedCarMakeId = this.carMakes[0]._id;
         console.log(carMakes);
       },
       error => {
@@ -124,8 +128,8 @@ export class NewCarAdComponent implements OnInit {
       }
     );
 
-    // make a default select item from the drop down list
-    this.selectedCarMakeId = this.carMakes[0]._id;
+   
+   
   }
   onMakeSelect(carMakeId): void {
     console.log("CarMake id:" + carMakeId);

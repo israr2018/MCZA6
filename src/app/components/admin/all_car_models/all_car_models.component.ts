@@ -33,6 +33,7 @@ export class AllCarModelsComponent implements OnInit {
   car_make_id: String;
   car_model_id: String;
   car_model_name: String;
+  new_car_model_name:String;
 
   hideCarMakeDDL: boolean;
   hideCarModelDDL: boolean;
@@ -67,6 +68,7 @@ export class AllCarModelsComponent implements OnInit {
       // make a defult select in car make drop down list
       // used for [(ngModel)]="car_make_id"
       this.car_make_id = this.allCarMakes[1]._id;
+      this.loadCarModels(this.car_make_id);
      
     }, (error) => {
 
@@ -128,15 +130,19 @@ export class AllCarModelsComponent implements OnInit {
     
   }
   addNewCarModel(): void {
-
+    console.log("new_car_model_name"+this.new_car_model_name);
     var newModel={
 
-      car_model_name:this.car_model_name,
+      car_model_name:this.new_car_model_name,
       car_make_id:this.car_make_id
 
     };
     this._carModelService.addCarModel(newModel).subscribe((result)=>{
       alert("New Car Model with name :"+result.body.car_model_name);
+        this.new_car_model_name = "";
+        this.loadCarMakes();
+        this.loadCarModels(this.car_make_id);
+        this.setDefaultState();
     },
     (error)=>{
       console.log("error in adding new car model"+error);
@@ -202,9 +208,9 @@ export class AllCarModelsComponent implements OnInit {
     this.hideAddButton = true;
 
   }
-  save(new_model_name?:any): void {
+  save(): void {
 
-   
+      console.log("new_model_name",this.new_car_model_name);
       // make sure that  user not sending empty model name while editing the model_name
       if (this.commad_mode == "update" && this.car_model_name!="") {
 
@@ -215,15 +221,12 @@ export class AllCarModelsComponent implements OnInit {
 
       }
       // make sure that the user enter new model name 
-      if (this.commad_mode == "add" && new_model_name!=="") {
+      if (this.commad_mode == "add" && this.new_car_model_name!=="") {
 
         console.log("add new car model");
-        this.car_model_name =new_model_name;
+       // this.car_model_name =;
         this.addNewCarModel();
-        this.car_model_name = "";
-        this.loadCarMakes();
-        this.loadCarModels(this.car_make_id);
-        this.setDefaultState();
+        
       }
 
     }

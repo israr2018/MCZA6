@@ -5,9 +5,10 @@
 export const environment = {
   production: false,
   name:"local",
-  // baseUrl:"http://localhost:8000/api",
-  baseUrl:"https://malakandcarzoneapi.herokuapp.com/api",
-   image_baseUrl:"https://malakandcarzoneapi.herokuapp.com\\uploads"
+   baseUrl:"http://localhost:8080/api",
+ // baseUrl:"https://malakandcarzoneapi.herokuapp.com/api",
+  // image_baseUrl:"https://malakandcarzoneapi.herokuapp.com\\uploads"
+  image_baseUrl:"http://localhost:8080\\uploads"
 };
 
 /*

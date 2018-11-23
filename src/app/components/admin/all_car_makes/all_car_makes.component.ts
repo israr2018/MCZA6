@@ -37,6 +37,7 @@ export class AllCarMakesComponent implements OnInit {
   is_active: boolean;
   car_make_id: String = '';
   ad_id: String;
+  updated_car_make:String;
 
   // Edit, Delete, List=default 
   constructor(private _carMakeService: CarMakeService, private _adminComponent: AdminComponent) {
@@ -63,8 +64,9 @@ export class AllCarMakesComponent implements OnInit {
 
   setEditMode(item, edit): void {
     item.isEditMode = edit;
+    this.updated_car_make=item.car_make;
   }
-  isEditMode(mode) {
+  isEditMode() {
     if (this.mode == 'edit') {
       return true;
     } else {
@@ -92,9 +94,13 @@ export class AllCarMakesComponent implements OnInit {
 
   }
   updateCarMake(event, item): void {
-    console.log("keysUp event fired");
-    if (event.which === 13 && event.target.value != null) {
-      item.car_make = event.target.value;
+   
+  //  console.log("updated_car_make:"+this.updated_car_make);
+   item.car_make=this.updated_car_make;
+    if (event.target.value != null) {
+      
+      console.log("item.car_make:"+item.car_make);
+      
       const updateCarMake = {
         _id: item._id,
         car_make: item.car_make
