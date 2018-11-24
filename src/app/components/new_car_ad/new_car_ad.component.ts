@@ -122,6 +122,7 @@ export class NewCarAdComponent implements OnInit {
         this.carMakes = carMakes;
          // make a default select item from the drop down list
         this.selectedCarMakeId = this.carMakes[0]._id;
+        this.selectedCarMakeName=this.carMakes[0].car_make;
         this.loadCarModels(this.selectedCarMakeId);
         console.log(carMakes);
       },
@@ -155,6 +156,8 @@ export class NewCarAdComponent implements OnInit {
       carModels => {
         this.carModels = carModels;
         this.selectedCarModelId=this.carModels[0]._id;
+        this.selectedCarModelName=this.carModels[0].car_model_name;
+        console.log(this.selectedCarModelName);
       },
       error => {
         this.errMsg = error;

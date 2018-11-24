@@ -57,9 +57,9 @@
             </div>
             <div>
 
-                {{ad.car_model_year}} | {{ad.car_km_driven}} km | {{ad.car_engine_type}} | {{ad.car_engine_capacity}} 
-               <span *ngIf="!ad.car_registration_type">|{{ad.car_transmission_type}}|{{ad.car_registration_type}}</span> 
-    
+                {{ad.car_model_year}} | {{ad.car_km_driven}} km | {{ad.car_engine_type}} | {{ad.car_engine_capacity}} |{{ad.car_transmission_type}}
+                
+                <span *ngIf="ad.car_registration_type">|{{ad.car_registration_type}}</span>
     
             </div>
             <div>
