@@ -1,5 +1,14 @@
    
-<div class="container">
+<div class="containter" *ngIf="submitting_ad">
+  <div class="well">
+ <h2>Submitting your car add. pleaes wait.....
+  </h2>
+
+  </div>
+  
+</div>
+
+<div class="container" *ngIf="!submitting_ad">
      <form #form="ngForm" novalidate>
         <div class="card-header">
         <h2>New Car Advertisment</h2>
@@ -95,7 +104,7 @@
         </div>
         <div class="col-md-6">
         <div class="form-group">
-          <label>Registration Type</label>
+          <label>Registration Type(*)</label>
           <select class="form-control" name="model.car_registration_type" [(ngModel)]="model.car_registration_type"  required> 
               <option>NCP Cut</option>
               <option>NCP Non-Cut</option>
@@ -200,39 +209,14 @@
               </div>
             </div>
           </div>
-          <div class="col-md-6 col-xs-12">
-              <div class="form-group">
-                <label for="form_message"> Mobile Number(*)</label>
-                <input type="text" class="form-control" name="model.contact_number" [(ngModel)]="model.contact_number" />
-  
-                <div class="help-block with-errors">
-  
-  
-  
-                </div>
-              </div>
-            </div>
+        
         </div>
-       <div class="row">
-        <div class="col-md-6 col-xs-12">
-          <div class="form-group">
-            <label for="form_message"> Mobile Number(*)</label>
-            <input type="text" class="form-control" name="model.contact_number" [(ngModel)]="model.contact_number" />
-
-            <div class="help-block with-errors">
-
-
-
-            </div>
-          </div>
-        </div>
-
-       </div>
+       
        <div class="row">
          <div class="form-group">
          <div class="col-md-6 col-xs-12">
 
-          <Button type="submit" class="btn btn-success" (click)="register()" [disabled]="form.invalid">
+          <Button type="submit" class="btn btn-outline-primary" (click)="register()" [disabled]="form.invalid">
            Submit Ad
           </Button>
         </div>

@@ -35,6 +35,7 @@ export class NewCarAdComponent implements OnInit {
   showOtherCarMake: boolean;
   showOtherCarModel:boolean=false;
   show_varification: Boolean;
+  submitting_ad:Boolean;
   
 
   //carMakes:any[];
@@ -42,12 +43,12 @@ export class NewCarAdComponent implements OnInit {
   //myform: FormGroup;
   model = new NewCarAdModel();
 
-  constructor(private _carAdService: CarAdService, private router: Router) {}
+  constructor(private _carAdService: CarAdService, private router: Router) {
+    this.submitting_ad=false;
+
+  }
   register(): void {
-    // this.model.car_image=this.selectedFile;
-    console.log(
-      "Form is subumitted Successfully:" + JSON.stringify(this.model)
-    );
+    this.submitting_ad=true;
     let formData: any = new FormData();
     // formData.append('car_image',  this.selectedFile[0],this.selectedFile[0].name);
     for (let i = 0; i < this.selectedFile.length; i++) {
@@ -121,6 +122,7 @@ export class NewCarAdComponent implements OnInit {
         this.carMakes = carMakes;
          // make a default select item from the drop down list
         this.selectedCarMakeId = this.carMakes[0]._id;
+        this.loadCarModels(this.selectedCarMakeId);
         console.log(carMakes);
       },
       error => {
@@ -142,17 +144,25 @@ export class NewCarAdComponent implements OnInit {
       this.showOtherCarMake = true;
     } else {
       this.showOtherCarMake = false;
-      this._carAdService.getCarModals(carMakeId).subscribe(
-        carModels => {
-          this.carModels = carModels;
-        },
-        error => {
-          this.errMsg = error;
-        }
-      );
+     this.loadCarModels(carMakeId);
       // console.log("car models"+ JSON.stringify(carModels));
     }
   }
+
+  loadCarModels(carMakeId:any):void{
+
+    this._carAdService.getCarModals(carMakeId).subscribe(
+      carModels => {
+        this.carModels = carModels;
+        this.selectedCarModelId=this.carModels[0]._id;
+      },
+      error => {
+        this.errMsg = error;
+      }
+    );
+  }
+
+  
   onCarModelSelect(model_id): void {
       this.selectedCarModelName = this.carModels.find(
       x => x._id == this.selectedCarModelId
