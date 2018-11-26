@@ -19,7 +19,7 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
-              "src/logo.jpg",
+              "src/mczlogo_icon.ico",
               "src/assets"
             ],
             "styles": [
@@ -88,7 +88,7 @@
             ],
             "scripts": [],
             "assets": [
-              "src/favicon.ico",
+              "src/mczlogo_icon.ico",
               "src/assets"
             ]
           }
