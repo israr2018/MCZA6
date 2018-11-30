@@ -52,7 +52,6 @@ html {
 .mybanner h2{
     color:#ffffff;
     text-align: center;
-    padding:auto;
     padding-top:150px;
     font-size:60px;
     /*Test */
@@ -79,12 +78,13 @@ html {
     padding:auto;
     padding-top:80px;
     font-size:20px;
+    padding-top: 93px;
     
 }
 .mybanner-text{
     
   color:#ffffff;
-  font-size: 10px;
+  font-size: 16px;
   font-weight: bold;
   text-align:center;
 }
