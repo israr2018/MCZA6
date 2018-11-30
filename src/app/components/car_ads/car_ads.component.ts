@@ -24,6 +24,7 @@ export class CarAdsComponent implements OnInit {
   pageTitle: string = "Car Ads List";
   showImage: boolean = true;
   adsFilter: string = 'Toyota';
+  isDataLoaded:boolean;
   carAds: any[];
   isValidPriceRange: boolean = false;
   isValidCarMake: boolean = false;
@@ -37,6 +38,7 @@ export class CarAdsComponent implements OnInit {
   image_baseUrl:string;
   constructor(private _carAdService: CarAdService,private _paginationService:PaginationService) {
     this.image_baseUrl=environment.image_baseUrl;
+    this.isDataLoaded=false;
   }
   toggleImage(): void {
     console.log("You clicked showImage button");
@@ -48,14 +50,21 @@ export class CarAdsComponent implements OnInit {
       this.carAds = resCarAds;
       this.backUpArray=this.carAds;
       this.setPage(1);
+      this.isDataLoaded=true;
     }, (error) => {
+
+      this.isDataLoaded=false;
 
     });
 
   }
 
   setPage(page:number){
-    this.pager = this._paginationService.getPages(this.carAds.length, page);
+    
+    console.log("set page is called:"+page);
+   
+   
+    this.pager = this._paginationService.getPages(this.carAds.length, page,10);
  
     // get current page of items
     this.pageItems = this.carAds.slice(this.pager.startIndex, this.pager.endIndex + 1);

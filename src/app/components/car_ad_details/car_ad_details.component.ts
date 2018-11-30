@@ -31,7 +31,6 @@ export class CarAdDetailsComponent implements OnInit {
     this._service.getCarAdById(id).subscribe(result => {
       this.carAd = result;
       this.isDataLoaded = true;
-      console.log("...." + JSON.stringify(this.carAd));
       this.selectedPic = this.carAd.car_image[0];
 
 

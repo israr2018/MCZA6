@@ -1,4 +1,14 @@
-<div class="container">
+<div class="container" *ngIf="!isDataLoaded">
+
+  <img src="../../../assets/images/lg_loading_img.gif"/>
+
+</div>
+
+
+
+<div class="container" *ngIf="isDataLoaded">
+
+  
   <div class="jumbotron">
     <h1 class="display-4">Search Your Favorite Car</h1>
     <p class="lead">By Price and Car Make or Model</p>
@@ -52,8 +62,11 @@
       </div>
       <div class="col-md-6">
             <div>
-              <h4> {{ad.car_make.make_name}} {{ad.car_make.model_name}} {{ad.car_model_year}} for Sale </h4>
-  
+              <h4> <a [routerLink]="[ '/car_ad_details',ad._id ]">{{ad.car_make.make_name}} {{ad.car_make.model_name}} {{ad.car_model_year}} for Sale</a> </h4>
+              
+             
+
+
             </div>
             <div>
 
@@ -72,23 +85,24 @@
 
     </div>
     <nav aria-label="Page navigation example" class="table-responsive mb-2">
-        <ul class="pagination justify-content-center" *ngIf="pager.pages && pager.pages.length">
+        <ul class="pagination justify-content-center" *ngIf="pager.pages && pager.pages.length" >
           <li [ngClass]="{'page-item disabled':pager.currentPage === 1 }">
-                <a class="page-link" href="#" tabindex="-1">First</a>
+                <a class="page-link" (click)="setPage(1)" tabindex="-1">First</a>
           </li>
           <li [ngClass]="{'page-item disabled':pager.currentPage === 1 }">
-            <a class="page-link" href="#" tabindex="-1">Previous</a>
+            <a class="page-link" (click)="setPage(pager.currentPage-1)" tabindex="-1">Previous</a>
           </li>
           
           <li *ngFor="let page of pager.pages" [ngClass]="{'page-item active':pager.currentPage === page}">
               <a (click)="setPage(page)" class="page-link">{{page}}</a>
             </li>
-          <li [ngClass]="{'page-item disabled':pager.currentPage === pager.totalPages }">
-              <a class="page-link" href="#" tabindex="-1">Last</a>
+         
+        <li [ngClass]="{'page-item disabled':pager.currentPage === pager.totalPages }">
+          <a class="page-link" (click)="setPage(pager.currentPage+1)" tabindex="-1">Next</a>
         </li>
         <li [ngClass]="{'page-item disabled':pager.currentPage === pager.totalPages }">
-          <a class="page-link" href="#" tabindex="-1">Next</a>
-        </li>
+            <a class="page-link" (click)="setPage(pager.totalPages)" tabindex="-1">Last</a>
+      </li>
         </ul>
       </nav>
 

@@ -1,5 +1,5 @@
 export class PaginationService{
-getPages(totalItems:number,currentPage:number=1,pageSize:number=5){
+getPages(totalItems:number,currentPage:number=1,pageSize:number=10){
     let totalPages = Math.ceil(totalItems / pageSize);
      // ensure current page isn't out of range
             if (currentPage < 1) { 
